@@ -13,7 +13,7 @@ class FileManager {
 private:
     fs::path current_path;
 
-    // Форматування часу для метаданих
+    
     std::string format_time(fs::file_time_type ftime) {
         auto sctp = std::chrono::time_point_cast<std::chrono::system_clock::duration>(
             ftime - fs::file_time_type::clock::now() + std::chrono::system_clock::now()
@@ -27,7 +27,7 @@ private:
 public:
     FileManager() : current_path(fs::current_path()) {}
 
-    // ls — Перегляд вмісту
+    
     void list_contents() {
         try {
             std::cout << "\n[DIRECTORY]: " << current_path.string() << "\n";
@@ -47,7 +47,7 @@ public:
         }
     }
 
-    // cd — Перехід
+  
     void change_directory(const std::string& path_str) {
         try {
             fs::path new_path = current_path / path_str;
@@ -61,7 +61,7 @@ public:
         }
     }
 
-    // mkdir — Створення директорії
+   
     void make_directory(const std::string& name) {
         try {
             if (fs::create_directory(current_path / name)) {
@@ -74,7 +74,7 @@ public:
         }
     }
 
-    // touch — Створення файлу (НОВА)
+    
     void create_file(const std::string& name) {
         try {
             fs::path file_p = current_path / name;
@@ -89,7 +89,7 @@ public:
         }
     }
 
-    // rename — Перейменування (НОВА)
+  
     void rename_object(const std::string& old_n, const std::string& new_n) {
         try {
             fs::path old_p = current_path / old_n;
@@ -105,7 +105,7 @@ public:
         }
     }
 
-    // rm — Видалення
+  
     void remove_object(const std::string& name) {
         try {
             if (fs::remove_all(current_path / name)) {
